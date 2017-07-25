@@ -1,0 +1,5 @@
+beat in real 2605
+beat in detected 2749
+beat missed |x| 144
+accuracy 105.5278310940499 %
+missed 5.527831094049904 %
