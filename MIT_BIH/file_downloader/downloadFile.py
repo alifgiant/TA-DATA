@@ -6,7 +6,7 @@ counter = 103
 filetype = [".atr",".dat",".hea"]
 testfile = urllib.URLopener()
 
-for x in range(counter, 124)+range(200, 235):
+for x in range(counter, 124) + range(200, 235):
 	directory = str(x)
 	try:
 	    urllib2.urlopen("https://www.physionet.org/physiobank/database/mitdb/"+directory+".dat")

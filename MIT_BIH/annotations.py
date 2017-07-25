@@ -1,4 +1,4 @@
-BEAT_ANNOTATION = {  # Same total as MIT BIH Arrhythmia Dataset
+BEAT_ANNOTATION = {  # Same beat count as MIT BIH Arrhythmia Dataset
     '·': 'Normal beat', 
     'N': 'Normal beat', 
     'L': 'Left bundle branch block beat', 
@@ -46,7 +46,7 @@ BEAT_ANNOTATION2 = {  # Same annot as MIT BIH Arrhythmia Dataset
     '|': 'Isolated QRS-like artifact'    
 }
 
-BEAT_ANNOTATION3 = {  # Same as MIT BIH all https://www.physionet.org/physiobank/annotations.shtml
+BEAT_ANNOTATION3 = {  # Same annot as physionet on https://www.physionet.org/physiobank/annotations.shtml
     'N': 'Normal beat (displayed as "·" by the PhysioBank ATM, LightWAVE, pschart, and psfd)',
     'L': 'Left bundle branch block beat',
     'R': 'Right bundle branch block beat',
@@ -68,7 +68,7 @@ BEAT_ANNOTATION3 = {  # Same as MIT BIH all https://www.physionet.org/physiobank
     '?': 'Beat not classified during learning'
 }
 
-BEAT_ANNOTATION4 = {  # Same annot as Proble paper M.G Tsipo
+BEAT_ANNOTATION4 = {  # Same annot as paper of M.G Tsipouras
     # NORMAL
     '·': 'Normal beat', 
     'N': 'Normal beat', 
