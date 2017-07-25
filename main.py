@@ -37,7 +37,7 @@ def tsipouras_beat_class(name, beat_type):
     print(name, count_cat)
 
 
-def output_beat_location(address, samp_from, samp_to, beat_pos):
+def output_beat_location(address, samp_from, samp_to, beat_pos, output_address):
     wfdb_record = wfdb.srdsamp(address, sampfrom=samp_from, sampto=samp_to)  # support indexing
 
     beat_loc = [0] * len(wfdb_record[0])
@@ -45,19 +45,24 @@ def output_beat_location(address, samp_from, samp_to, beat_pos):
     for x in beat_pos:
         beat_loc[x] = 1
 
-    beat_loc_add = address[:-3] + '/beat_loc.json'
+    beat_loc_add = address[:-3] + output_address
     json.dump(beat_loc, open(beat_loc_add, 'w'))
     print('created', beat_loc_add)
 
-def delete():
-    import glob, os
-    for f in glob.glob("beat.json"):
-        os.remove(f)
+
+def purge(dir, pattern):
+    import os, re
+    for f in os.listdir(dir):
+        if re.search(pattern, f):
+            os.remove(os.path.join(dir, f))
+
+    print('deleted', dir + '/' + pattern)
 
 
 if __name__ == '__main__':
     source = sample.MitBih
     base = sample.MitBih.base
+    output_loc_address = 'beat_loc.json'
 
     '''..........................Select Source.................................'''
     records = source.get_all_record()             # all records
@@ -93,7 +98,10 @@ if __name__ == '__main__':
         # show_current_beat_types(str_record, beat_type)  # show beat type
         # tsipouras_beat_class(str_record, beat_type)  # show tsipouras beat class
 
-        output_beat_location(record_address, samp_from, samp_to, beat_pos)
+        output_beat_location(record_address, samp_from, samp_to, beat_pos, output_loc_address)  # output beat loc
+        # purge(base+'/'+str_record, output_loc_address)  # delete output beat loc
+        # purge(base+'/'+str_record, 'samples.csv')  # delete other thing
 
     count_all_beat_type = Counter(all_beat_type)
     print('ALL', count_all_beat_type)
+
