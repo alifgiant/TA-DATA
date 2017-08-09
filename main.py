@@ -25,7 +25,7 @@ def show_current_beat_types(name, beat_type):
 
 def tsipouras_beat_class(name, beat_type):
     # tsipouras class
-    categories = [['.', 'N', '/', 'L', 'R', 'Q', 'f'], ['V', 'A', 'a', 'J', 'S', 'F', 'x'], ['!']]
+    categories = [['.', 'N', '/', 'L', 'R', 'Q', 'f', 'x'], ['V', 'A', 'a', 'J', 'S', 'F'], ['!']]
 
     count_beat_type = Counter(beat_type)
     count_cat = {1: 0, 2: 0, 3: 0}
@@ -65,10 +65,10 @@ if __name__ == '__main__':
     output_loc_address = 'beat_loc.json'
 
     '''..........................Select Source.................................'''
-    records = source.get_all_record()             # all records
+    # records = source.get_all_record()             # all records
     # records = source.get_record_series_100()      # 100s records
     # records = source.get_record_series_200()      # 200s records
-    # records = source.get_one_record(num=100)      # record number 100
+    records = source.get_one_record(num=106)      # record number 100
     '''........................................................................'''
 
     '''..........................Select Annotator.................................'''
@@ -90,18 +90,25 @@ if __name__ == '__main__':
         samp_to = None
 
         annotation = wfdb.rdann(record_address, annotator, sampfrom=samp_from, sampto=samp_to)
-        # view_waveform(record_name, samp_from, samp_to, annotation)  # view wave plot
+        view_waveform(record_address, samp_from, samp_to, annotation)  # view wave plot
 
-        beat_pos, beat_type = extract_beat(annotation, beat_annotation)
-        all_beat_type += beat_type  # hold all beat
+        # beat_pos, beat_type = extract_beat(annotation, beat_annotation)
+        # all_beat_type += beat_type  # hold all beat
 
+        # loc = list()
+        # for x, y in zip(beat_pos, beat_type):
+        #     if (y == 'V'): loc.append(x)
+
+        # print(loc)
+
+        # print('--------------')
         # show_current_beat_types(str_record, beat_type)  # show beat type
         # tsipouras_beat_class(str_record, beat_type)  # show tsipouras beat class
 
-        output_beat_location(record_address, samp_from, samp_to, beat_pos, output_loc_address)  # output beat loc
+        # output_beat_location(record_address, samp_from, samp_to, beat_pos, output_loc_address)  # output beat loc
         # purge(base+'/'+str_record, output_loc_address)  # delete output beat loc
         # purge(base+'/'+str_record, 'samples.csv')  # delete other thing
 
-    count_all_beat_type = Counter(all_beat_type)
-    print('ALL', count_all_beat_type)
+    # count_all_beat_type = Counter(all_beat_type)
+    # print('ALL', count_all_beat_type)
 

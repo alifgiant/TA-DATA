@@ -1,3 +1,5 @@
+Sample Rate: 360 samples / seconds (360hz)
+
 MLII = Modified limb lead II. Placed electrodes on the chest.
 
 V1 .. V5 = Modified Lead. 
